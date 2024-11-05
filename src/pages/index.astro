@@ -1,4 +1,9 @@
 ---
+import {SignIn, SignOut} from 'auth-astro/components';
+import {getSession} from 'auth-astro/server';
+
+const session = await getSession(Astro.request);
+
 
 ---
 
@@ -12,5 +17,24 @@
 	</head>
 	<body>
 		<h1>Astro</h1>
+
+		<SignIn provider="google" class="btn btn-info">
+			Acceder con google
+		</SignIn>
+		<SignIn provider="github" class="btn btn-alert">
+			Acceder con Github
+		</SignIn>
+
+		<pre>
+			<code>
+				{ JSON.stringify(session, null, 2) }
+			</code>
+		</pre>
+
+<SignOut class="btn btn-warning">
+		salir
+</SignOut>
+
+
 	</body>
 </html>
